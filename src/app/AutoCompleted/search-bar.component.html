@@ -1,0 +1,4 @@
+<div class="container">
+  <input type="text" placeholder="Type To Search.." (keyup)="Onsearch()" [(ngModel)]= "searchText">
+  <div class="city" (click)="FindCity(city.Key,city.LocalizedName)" *ngFor="let city of cities| slice:0:3; let i=index">{{city.LocalizedName}}</div>
+</div>

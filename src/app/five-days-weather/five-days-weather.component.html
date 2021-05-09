@@ -1,0 +1,9 @@
+<div *ngIf="fiveDayDetails.length > 0" class="fiveDays" >
+  <div class="container" *ngFor="let day of fiveDayDetails">
+      <h1>{{days[day.Date.getDay()]}}</h1>
+      <img src="https://developer.accuweather.com/sites/default/files/{{day.Temperature.DayIcon}}-s.png" *ngIf="day.Temperature.DayIcon > 10">
+      <img src="https://developer.accuweather.com/sites/default/files/0{{day.Temperature.DayIcon}}-s.png" *ngIf="day.Temperature.DayIcon < 10">
+      <h3> {{day.Temperature.Minimum + "°C"}} - {{day.Temperature.Maximum + "°C"}}</h3>
+  </div>
+</div>
+

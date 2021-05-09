@@ -1,0 +1,12 @@
+<div class="container" *ngIf ="this.details.Temperature !== null">
+  <div class="title">
+    <img src="../../assets//heart_not_filled.svg" alt="addToFavorite" *ngIf="!favorite" (click)="AddtoFavorite()" style="cursor: pointer;">
+    <img src="../../assets//heart_filled.svg" alt="addToFavorite" *ngIf="favorite" (click)="removeFromFavorite()" style="cursor: pointer;">
+    <h1>{{details.cityName}}</h1>
+  </div>
+  <div class="title">
+    <Img [src]="imagePath" alt="icon" style="height:48dp;width: 48dp;"/>
+    <h1>{{convertToC(this.details.Temperature.Metric.Value)+ "°C"}}</h1>
+  </div>
+  <h1>{{this.details.WeatherText}}</h1>
+</div>

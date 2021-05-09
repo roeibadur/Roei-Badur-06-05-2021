@@ -1,0 +1,18 @@
+<div class="page">
+  <h1 style="align-self: center;">Favorites</h1>
+  <br>
+  <div class="favorites">
+      <div *ngFor="let favorite of favorites" class="container" (click)="setCity(favorite.key,favorite.cityName)">
+        <h3>{{favorite.cityName}}</h3>
+        <div class="row">
+          <span>{{convertToC(favorite.Temperature) + "°C"}}</span>
+          <img [src]="favorite.WeatherIcon">
+        </div>
+        <div class="row">
+          <span>{{ favorite.WeatherText }}</span>
+        </div>
+      </div>
+  </div>
+</div>
+
+

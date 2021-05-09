@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+input {
+  border-radius: 50px;
+  height: 70px;
+  width: 300px;
+  font-size: large;
+  font-weight: bold;
+  padding: 15px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.city {
+  height: 70px;
+  width: 300px;
+  background-color: white;
+  color: black;
+  font-size: large;
+  font-weight: bold;
+  padding: 15px;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+}

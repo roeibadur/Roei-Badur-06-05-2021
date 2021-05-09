@@ -1,0 +1,26 @@
+h1 {
+  color:rgb(167, 167, 41);
+}
+
+.container {
+  height: 250px;
+  flex-basis: 20%;
+  background-color: rgba(255, 255, 255, 0.65);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-left:1px solid black;
+}
+
+.fiveDays {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+img {
+  height: 70px;
+  width: 200px;
+}
