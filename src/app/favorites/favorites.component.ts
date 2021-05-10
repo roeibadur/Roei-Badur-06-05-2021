@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../Store/app.reducer';
 import * as CurrentLocationActions from '../current-location/Store/current-location.actions';
 import { Router } from '@angular/router';
+import { Service } from '../notifcation.service';
 
 interface cityDetails {
   cityName: string,
@@ -22,7 +23,8 @@ export class FavoritesComponent implements OnInit , OnChanges {
   favorites : cityDetails[] = []
   constructor(
     private store: Store<fromApp.AppState>,
-    private router:Router) { }
+    private router:Router,
+    public service: Service) { }
 
   ngOnInit() {
       this.init();

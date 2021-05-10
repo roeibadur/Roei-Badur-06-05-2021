@@ -5,7 +5,8 @@
       <div *ngFor="let favorite of favorites" class="container" (click)="setCity(favorite.key,favorite.cityName)">
         <h3>{{favorite.cityName}}</h3>
         <div class="row">
-          <span>{{convertToC(favorite.Temperature) + "°C"}}</span>
+          <span *ngIf="this.service.isCelsius">{{this.convertToC(favorite.Temperature) + "°C"}}</span>
+          <span *ngIf="!this.service.isCelsius">{{favorite.Temperature + "°F"}}</span>
           <img [src]="favorite.WeatherIcon">
         </div>
         <div class="row">

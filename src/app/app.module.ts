@@ -5,7 +5,10 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-rounting.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
@@ -13,11 +16,11 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { SearchBarComponent } from './AutoCompleted/search-bar.component';
 import {  CurrentLocationComponent } from './current-location/current-location.component';
 import { FiveDaysWeatherComponent } from './five-days-weather/five-days-weather.component';
-
 import * as fromApp from './Store/app.reducer';
 import { AutoCompletedEffects } from './AutoCompleted/Store/AutoCompleted.effects';
 import { CurrentLocationEffects } from './current-location/Store/current-location.effects';
 import {  FiveDayaWeatherEffects} from './five-days-weather/Store/five-days-weather.effects';
+
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import {  FiveDayaWeatherEffects} from './five-days-weather/Store/five-days-weat
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AutoCompletedEffects, CurrentLocationEffects,FiveDayaWeatherEffects])
   ],

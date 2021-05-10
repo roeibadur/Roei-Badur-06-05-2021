@@ -21,7 +21,8 @@ export interface TodayWeatherType {
   Temperature: TemperatureType,
   WeatherText: string,
   cityName: string,
-  WeatherIcon: number
+  WeatherIcon: number,
+  error: string
 }
 
 export interface TemperatureType {
@@ -36,7 +37,8 @@ export interface MetricImperialType {
 }
 
 export interface FiveDayaWeatherType {
-  DailyForecasts: WeatherItemType []
+  DailyForecasts: WeatherItemType [],
+  error: string
 }
 
 export interface WeatherItemType {
@@ -51,6 +53,7 @@ export interface Temperature5DaysType {
 }
 
 export interface AutoCompleteType {
-  cities: CityInfoType []
+  cities: CityInfoType [],
+  error: string
 }
 

@@ -3,6 +3,7 @@ import { TodayWeatherType } from '../../models/models.model';
 
 export const GET_CITY = '[Loaction] Get a city';
 export const SET_CITY = '[Loaction] Set a city';
+export const EROOR = '[Location] error'
 
 export class GetCity implements Action {
   readonly type = GET_CITY;
@@ -14,4 +15,9 @@ export class SetCity implements Action {
   constructor(public payload: TodayWeatherType) {}
 }
 
-export type CurrentLocationActions = GetCity | SetCity;
+export class ErrorHanding implements Action {
+  readonly type = EROOR;
+  constructor(public payload: string) {}
+}
+
+export type CurrentLocationActions = GetCity | SetCity | ErrorHanding;

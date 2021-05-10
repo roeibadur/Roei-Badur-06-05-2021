@@ -3,9 +3,10 @@ import * as fromApp from '../../Store/app.reducer';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { switchMap , map } from 'rxjs/operators';
+import { switchMap , map, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Effect , Actions , ofType } from '@ngrx/effects';
+import { of } from 'rxjs';
 
 
 @Injectable()
@@ -19,9 +20,12 @@ export class AutoCompletedEffects {
       ofType(AutoCompletedActions.GET_CITIES),
       switchMap( (getCitiesAction: AutoCompletedActions.GetCities ) => {
         return this.http.get<[]>(`${environment.address}locations/v1/cities/autocomplete?apikey=${environment.ApiKey}&q=${getCitiesAction.payload}`)
-      }), map( results => {
+      .pipe(map( results => {
         return new AutoCompletedActions.SetCities(results);
-      })
+      }),catchError(error => {
+          console.log(error);
+          return of(new AutoCompletedActions.ErrorHanding('error fetching search information'));
+      }))})
     );
 
 }

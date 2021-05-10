@@ -6,7 +6,8 @@ const initialstate: TodayWeatherType = {
   key: '',
   WeatherText: '',
   cityName: '',
-  WeatherIcon: -1
+  WeatherIcon: -1,
+  error: ''
 };
 
 export function CurrentLocationReducer(state: TodayWeatherType = initialstate, action: CurrentLocationActions.CurrentLocationActions) {
@@ -18,7 +19,13 @@ export function CurrentLocationReducer(state: TodayWeatherType = initialstate, a
         cityName:action.payload.cityName,
         Temperature: action.payload.Temperature,
         WeatherText: action.payload.WeatherText,
-        WeatherIcon: action.payload.WeatherIcon
+        WeatherIcon: action.payload.WeatherIcon,
+        error:''
+      };
+    case CurrentLocationActions.EROOR:
+      return {
+        ...state,
+        error:action.payload
       }
     default: return state;
   }

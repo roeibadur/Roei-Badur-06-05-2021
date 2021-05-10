@@ -8,11 +8,11 @@ import * as fromFiveDays from '../five-days-weather/Store/five-days-weather.redu
 export interface AppState {
   AutoCompleted: fromModels.AutoCompleteType;
   currentLocation: fromModels.TodayWeatherType;
-  FiveDayaWeather: fromModels.FiveDayaWeatherType;
+  FiveDaysWeather: fromModels.FiveDayaWeatherType;
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
   AutoCompleted: fromAutoCompleted.AutoCompletedReducer,
   currentLocation: fromCurrentLocation.CurrentLocationReducer,
-  FiveDayaWeather: fromFiveDays.FiveDayaWeatherReducer
+  FiveDaysWeather: fromFiveDays.FiveDaysWeatherReducer
 };

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as FromApp from '../Store/app.reducer';
 import { TodayWeatherType } from '../models/models.model';
 import { Subscription } from 'rxjs';
+import { Service} from '../notifcation.service';
 
 
 @Component({
@@ -16,12 +17,14 @@ export class CurrentLocationComponent implements OnInit, OnDestroy {
     cityName: '',
     Temperature: null,
     WeatherIcon: -1,
-    WeatherText: ''
+    WeatherText: '',
+    error:''
   }
   favorite: boolean = false;
   imagePath: string ;
   storeSub: Subscription
-  constructor(private store: Store<FromApp.AppState>) { }
+  constructor(private store: Store<FromApp.AppState>,
+              public service: Service) { }
 
   ngOnInit() {
     this.storeSub = this.store.select('currentLocation').subscribe((todayWeather:TodayWeatherType) => {
@@ -31,15 +34,18 @@ export class CurrentLocationComponent implements OnInit, OnDestroy {
         this.details.WeatherIcon = todayWeather.WeatherIcon;
         this.details.WeatherText = todayWeather.WeatherText;
         this.details.key = todayWeather.key;
+        this.details.error = todayWeather.error;
         this.imagePath = `https://developer.accuweather.com/sites/default/files/${todayWeather.WeatherIcon < 10
         ? "0" + todayWeather.WeatherIcon
         : todayWeather.WeatherIcon
         }-s.png`;
-        // this.details.Temperature.Metric.Value = Math.floor(this.details.Temperature.Metric.Value);
         if(localStorage.getItem(this.details.key) !== null) {
           this.favorite = true;
         } else {
           this.favorite = false;
+        }
+        if(this.details.error !== '') {
+          this.service.showError(this.details.error);
         }
       }
     });
@@ -49,13 +55,14 @@ export class CurrentLocationComponent implements OnInit, OnDestroy {
     if(localStorage.getItem(this.details.key) == null) {
       let city = {
         cityName: this.details.cityName,
-        Temperature: Math.floor(this.details.Temperature.Metric.Value),
+        Temperature: Math.floor(this.details.Temperature.Imperial.Value),
         WeatherIcon: this.imagePath,
         WeatherText: this.details.WeatherText,
         key:  this.details.key
       };
       window.localStorage.setItem(this.details.key,JSON.stringify(city));
       this.favorite = true;
+      this.service.showSuccess('Added to Favorite');
     }
   }
   convertToC(fahrenheit: number) {
@@ -66,6 +73,7 @@ export class CurrentLocationComponent implements OnInit, OnDestroy {
   removeFromFavorite() {
     localStorage.removeItem(this.details.key);
     this.favorite = false;
+    this.service.showSuccess('remove from favorite');
   }
 
   ngOnDestroy() {

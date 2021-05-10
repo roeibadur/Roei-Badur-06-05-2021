@@ -2,16 +2,24 @@ import { FiveDayaWeatherType } from '../../models/models.model';
 import * as FiveDayaWeatherActions from './five-days-weather.actions';
 
 const initalState: FiveDayaWeatherType = {
-  DailyForecasts: []
+  DailyForecasts: [],
+  error: ''
 };
 
-export function FiveDayaWeatherReducer(state: FiveDayaWeatherType = initalState,action: FiveDayaWeatherActions.FiveDayaWeatherActions ) {
+export function FiveDaysWeatherReducer(state: FiveDayaWeatherType = initalState,action: FiveDayaWeatherActions.FiveDayaWeatherActions ) {
   switch(action.type) {
     case FiveDayaWeatherActions.SET5DAYSWEATHER:
+      console.log(action.payload);
       return {
         ...state,
-        DailyForecasts: [...action.payload]
-      }
+        error: '',
+        DailyForecasts: action.payload == null ? [] : [...action.payload]
+      };
+    case FiveDayaWeatherActions.ERROR:
+      return {
+          ...state,
+          error: action.payload
+      };
     default: return state;
   }
 }

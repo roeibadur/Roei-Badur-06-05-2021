@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { CityInfoType } from '../../models/models.model';
 
 export const GET_CITIES = '[Auto Completed] get 10 cities';
-export const LOADING_AUTO_COMPLETE = "[Auto Completed] Loading"
+export const ERROR = "[Auto Completed] Error"
 export const SET_CITIES = '[Auto Completed] set cities';
 
 
@@ -11,8 +11,9 @@ export class GetCities implements Action {
   constructor(public payload: string) {}
 }
 
-export class Loading implements Action {
-  readonly type = LOADING_AUTO_COMPLETE;
+export class ErrorHanding implements Action {
+  readonly type = ERROR;
+  constructor(public payload: string) {}
 }
 
 export class SetCities implements Action {
@@ -21,4 +22,4 @@ export class SetCities implements Action {
 }
 
 
-export type AutoCompletedActions = GetCities | SetCities | Loading;
+export type AutoCompletedActions = GetCities | SetCities | ErrorHanding;

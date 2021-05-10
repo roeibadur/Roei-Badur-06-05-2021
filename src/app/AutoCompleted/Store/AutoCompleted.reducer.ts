@@ -2,7 +2,8 @@ import * as AutoCompletedActions from './AutoCompleted.actions';
 import { AutoCompleteType } from '../../models/models.model';
 
 const initialstate: AutoCompleteType = {
-  cities: []
+  cities: [],
+  error: ''
 };
 
 
@@ -11,11 +12,14 @@ export function AutoCompletedReducer(state: AutoCompleteType = initialstate,acti
     case AutoCompletedActions.SET_CITIES:
       return {
         ...state,
+        error: '',
         cities: action.payload === null ? [] : [...action.payload]
       };
-    case AutoCompletedActions.LOADING_AUTO_COMPLETE:
+    case AutoCompletedActions.ERROR:
         return {
-          ...state
+          ...state,
+          error:action.payload,
+          cities: []
         }
     default: return state;
   }

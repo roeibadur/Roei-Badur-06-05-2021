@@ -3,7 +3,8 @@
       <h1>{{days[day.Date.getDay()]}}</h1>
       <img src="https://developer.accuweather.com/sites/default/files/{{day.Temperature.DayIcon}}-s.png" *ngIf="day.Temperature.DayIcon > 10">
       <img src="https://developer.accuweather.com/sites/default/files/0{{day.Temperature.DayIcon}}-s.png" *ngIf="day.Temperature.DayIcon < 10">
-      <h3> {{day.Temperature.Minimum + "°C"}} - {{day.Temperature.Maximum + "°C"}}</h3>
+      <h3 *ngIf="this.service.isCelsius"> {{this.convertToC(day.Temperature.Minimum) + "°C"}} - {{this.convertToC(day.Temperature.Maximum) + "°C"}}</h3>
+      <h3 *ngIf="!this.service.isCelsius"> {{day.Temperature.Minimum + "°F"}} - {{day.Temperature.Maximum + "°F"}}</h3>
   </div>
 </div>
 

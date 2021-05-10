@@ -6,7 +6,8 @@
   </div>
   <div class="title">
     <Img [src]="imagePath" alt="icon" style="height:48dp;width: 48dp;"/>
-    <h1>{{convertToC(this.details.Temperature.Metric.Value)+ "°C"}}</h1>
+    <h1 *ngIf="this.service.isCelsius">{{this.details.Temperature.Metric.Value+ "°C"}}</h1>
+    <h1 *ngIf="!this.service.isCelsius">{{this.details.Temperature.Imperial.Value+ "°F"}}</h1>
   </div>
   <h1>{{this.details.WeatherText}}</h1>
 </div>
